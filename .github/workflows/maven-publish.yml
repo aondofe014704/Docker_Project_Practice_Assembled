@@ -4,7 +4,7 @@
 name: Maven Package
 
 env:
-    DOCKER_HUB_REPO: jacksongu014704/docker_practice_project
+    DOCKER_HUB_REPO: jacksongu014704/docker-practice-project
 
 on:
   push:
@@ -41,8 +41,6 @@ jobs:
 
 
     - name: Build and push Docker image to Docker Hub
-      env:
-            DOCKER_HUB_REPO: jacksongu014704/docker_practice_project
       run: |
           docker buildx build --platform linux/amd64,linux/arm64 \
           -t ${{ env.DOCKER_HUB_REPO }}:latest \
