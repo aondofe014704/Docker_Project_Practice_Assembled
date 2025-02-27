@@ -2,6 +2,7 @@
 # For more information see: https://github.com/actions/setup-java/blob/main/docs/advanced-usage.md#apache-maven-with-a-settings-path
 
 name: Maven Package
+
 env:
     DOCKER_HUB_REPO: jacksongu014704/docker_practice_project
 
@@ -40,8 +41,10 @@ jobs:
 
 
     - name: Build and push Docker image to Docker Hub
+      env:
+            DOCKER_HUB_REPO: jacksongu014704/docker_practice_project
       run: |
           docker buildx build --platform linux/amd64,linux/arm64 \
           -t ${{ env.DOCKER_HUB_REPO }}:latest \
-          -t ${{ env.DOCKER_HUB_REPO }}: $GITHUB_SHA \ 
+          -t ${{ env.DOCKER_HUB_REPO }}:$GITHUB_SHA \ 
           --push .
